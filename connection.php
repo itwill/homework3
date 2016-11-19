@@ -1,7 +1,8 @@
 <?php
-// хост БД
-$db_hostname = 'localhost'; // имя базы данных
-$db_database = 'hw_db';
-// имя пользователя $db_username = 'root';
-// пароль
-$db_password = '';
+//print_r(PDO::getAvailableDrivers());
+
+try {
+    $DBH = new PDO("mysql:host=localhost; dbname=hw_db", "root", "");
+} catch (PDOException $e) {
+    echo $e > getMessage();
+}
