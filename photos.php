@@ -26,8 +26,8 @@ $photo_files = scandir('photos/');
 <?php
 if (!empty($photo_files[2])) {
     for ($i = 2; $i < count($photo_files); $i++) {
-        echo "<p>$photo_files[$i]</p><a href='photo_rename.php?rename=" . iconv("cp1251", "UTF-8",
-                $photo_files[$i]) . "'>Переименовать</a>&nbsp;&nbsp;&nbsp;<a href='photo_delete.php'>Удалить</a>";
+        echo "<p>$photo_files[$i]</p><a href='photo_rename.php?rename=" . iconv("cp1251", "UTF-8", $photo_files[$i]) . "'>Переименовать</a>&nbsp;&nbsp;&nbsp;<a href='photo_delete.php?deletephoto="
+            . iconv("cp1251", "UTF-8", $photo_files[$i]) . "'>Удалить</a>";
     }
 } else {
     echo "<p style='color: red;'>В папке photos нет фотографий</p> <a href='user_profile.php'>Добавить фото</a>";
