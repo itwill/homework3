@@ -34,5 +34,6 @@ if(isset($_SESSION['username'])){
     <button type="submit">Сохранить информацию</button>
 </form>
 
+<p>Список фотографий - <a href="photos.php">Изменить фотографию</a></p>
 </body>
 </html>

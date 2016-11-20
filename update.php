@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $user_photo = $_FILES['user_photo'];
-    $photo_filename = $user_photo['name'];
+    $photo_filename = iconv("cp1251", "UTF-8",$user_photo['name']);
 //    var_dump($user_photo);
     $dir = 'photos';
 
@@ -55,6 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $STH->execute();
         $STH->setFetchMode(PDO::FETCH_ASSOC);
         $STH->fetch();
+
+        header('Location: photos.php');
 
     } else {
         $STH = $DBH->prepare("UPDATE users SET name=?,age=?,info=? WHERE username=?");
