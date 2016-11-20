@@ -1,2 +1,38 @@
 <?php
-echo "Авторизация выполнена";
+//require_once "update.php";
+session_start();
+
+$user = null;
+if(isset($_SESSION['username'])){
+    $user = $_SESSION['username'];
+    echo "<p style='background: #ececec;padding:5px;'>Добро пожаловать, $user <br></p><p> На этой странице Вы можете изменить информацию о себе</p>";
+} else {
+    echo "<a href='index.php'>Для просмотра этой страницы следует авторизоваться</a>";
+    exit();
+}
+?>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+</head>
+<body>
+<p><a href='index.php'>На главную</a> ||||||| <a href='logout.php'>Выйти из аккаунта</a></p>
+
+<p><strong>Информация о пользователе:</strong></p>
+<form method="post" action="update.php" enctype="multipart/form-data">
+    <label for="name">Имя</label><br>
+    <input id="name" type="text" name="name"><br>
+    <label for="age">Возраст</label><br>
+    <input id="age" type="text" name="age"><br>
+    <label for="about">О себе</label><br>
+    <textarea name="about" id="" cols="30" rows="10"></textarea><br>
+    <label for="age">Фотография пользователя</label><br>
+    <input type="file" name="photo"><br><br>
+    <button type="submit">Сохранить информацию</button>
+</form>
+
+</body>
+</html>
