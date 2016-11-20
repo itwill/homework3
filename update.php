@@ -29,17 +29,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $info = $row["info"];
     }
 
-    //$photo = $_FILES['photo'];
-    // проверка файла изображения
+    $user_photo = $_FILES['user_photo'];
+    $photo_filename = $user_photo['name'];
+    var_dump($user_photo);
+    $dir = 'photos';
 
-    $STH = $DBH->prepare("UPDATE users SET name=?,age=?,info=? WHERE username=?");
-    $STH->bindParam(1, $name);
-    $STH->bindParam(2, $age);
-    $STH->bindParam(3, $info);
-    $STH->bindParam(4, $_SESSION['username']);
-    $STH->execute();
-    $STH->setFetchMode(PDO::FETCH_ASSOC);
-    $STH->fetch();
+    if (!file_exists($dir)) {
+        mkdir($dir, 0777);
+    }
+
+    if (!empty($user_photo)) {
+        move_uploaded_file($user_photo['tmp_name'], "$dir/" . $user_photo['name']);
+
+        $STH = $DBH->prepare("UPDATE users SET name=?,age=?,info=?,photo=? WHERE username=?");
+        $STH->bindParam(1, $name);
+        $STH->bindParam(2, $age);
+        $STH->bindParam(3, $info);
+        $STH->bindParam(4, $photo_filename);
+        $STH->bindParam(5, $_SESSION['username']);
+        $STH->execute();
+        $STH->setFetchMode(PDO::FETCH_ASSOC);
+        $STH->fetch();
+
+    } else {
+        $STH = $DBH->prepare("UPDATE users SET name=?,age=?,info=? WHERE username=?");
+        $STH->bindParam(1, $name);
+        $STH->bindParam(2, $age);
+        $STH->bindParam(3, $info);
+        $STH->bindParam(4, $_SESSION['username']);
+        $STH->execute();
+        $STH->setFetchMode(PDO::FETCH_ASSOC);
+        $STH->fetch();
+    }
+
 }
 
 

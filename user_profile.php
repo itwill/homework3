@@ -29,8 +29,8 @@ if(isset($_SESSION['username'])){
     <input id="age" type="text" name="age"><br>
     <label for="info">О себе</label><br>
     <textarea name="info" id="" cols="30" rows="10"></textarea><br>
-    <label for="photo">Фотография пользователя</label><br>
-    <input type="file" name="photo"><br><br>
+    <label for="user_photo">Фотография пользователя</label><br>
+    <input type="file" name="user_photo"><br><br>
     <button type="submit">Сохранить информацию</button>
 </form>
 
