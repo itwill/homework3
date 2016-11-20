@@ -31,14 +31,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $user_photo = $_FILES['user_photo'];
     $photo_filename = $user_photo['name'];
-    var_dump($user_photo);
+//    var_dump($user_photo);
     $dir = 'photos';
+
+//    echo validPhoto($photo_filename);
 
     if (!file_exists($dir)) {
         mkdir($dir, 0777);
     }
 
-    if (!empty($user_photo)) {
+    $photo_valided = validPhoto($photo_filename);
+
+//        if (!empty($user_photo)) {
+    if ($photo_valided !== false) {
         move_uploaded_file($user_photo['tmp_name'], "$dir/" . $user_photo['name']);
 
         $STH = $DBH->prepare("UPDATE users SET name=?,age=?,info=?,photo=? WHERE username=?");
@@ -61,9 +66,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $STH->setFetchMode(PDO::FETCH_ASSOC);
         $STH->fetch();
     }
-
 }
-
-
-
-
