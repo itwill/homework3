@@ -1,5 +1,5 @@
 <?php
-//require_once "update.php";
+require_once "update.php";
 session_start();
 
 $user = null;
@@ -27,9 +27,9 @@ if(isset($_SESSION['username'])){
     <input id="name" type="text" name="name"><br>
     <label for="age">Возраст</label><br>
     <input id="age" type="text" name="age"><br>
-    <label for="about">О себе</label><br>
-    <textarea name="about" id="" cols="30" rows="10"></textarea><br>
-    <label for="age">Фотография пользователя</label><br>
+    <label for="info">О себе</label><br>
+    <textarea name="info" id="" cols="30" rows="10"></textarea><br>
+    <label for="photo">Фотография пользователя</label><br>
     <input type="file" name="photo"><br><br>
     <button type="submit">Сохранить информацию</button>
 </form>
