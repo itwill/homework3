@@ -1,4 +1,5 @@
 <?php
+// Принято
 require_once("login.php");
 ?>
 
